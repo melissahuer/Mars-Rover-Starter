@@ -13,14 +13,14 @@ it("throws error if a name is NOT passed into the constructor as the first param
 
 //TEST 5
 it("constructor sets name", function(){
-    const name = "messageName";
+    let name = "messageName";
     let tstName = new Message(name);
     expect(tstName.name).toBe(name);
 });
 
 //TEST 6
 it("contains a commands array passed into the constructor as the 2nd argument", function(){
-    const name = "nameMessage";
+    let name = "nameMessage";
     const commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
     const tstCommands = new Message(name, commands);
     expect(tstCommands.commands).toBe(commands);
