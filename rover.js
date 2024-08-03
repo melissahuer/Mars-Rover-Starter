@@ -32,4 +32,5 @@ class Rover {
       return { message: message.name, results: results };
    }
 }
-module.exports = Rover;
+
+module.exports = Rover; 
