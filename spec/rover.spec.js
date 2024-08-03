@@ -9,7 +9,7 @@ const Command = require('../command.js');
 describe("Rover class", function () {
 
   //TEST 7
-  it("constructor sets position and default values for mode and generatorWatts", function () {
+  test("constructor sets position and default values for mode and generatorWatts", function () {
     let position = 10;
     let mode = 'Normal';
     let generatorWatts = 110
@@ -20,7 +20,7 @@ describe("Rover class", function () {
   });
 
   //TEST 8
-  it("response returned by receiveMessage contains the name of the message", function () {
+  test("response returned by receiveMessage contains the name of the message", function () {
     const testRover = new Rover();
     const message = { name: "Test message", commands: [] };
     const response = testRover.receiveMessage(message);
@@ -28,7 +28,7 @@ describe("Rover class", function () {
   });
 
   //TEST 9
-  it("response returned by receiveMessage includes two results if two commands are sent in the message", function () {
+  test("response returned by receiveMessage includes two results if two commands are sent in the message", function () {
     const commands = [new Command('test_one', 'test_two'), new Command('test_three', 'test_four')];
     const message = new Message("Test Message with two commands", commands);
     const againRover = new Rover([0, 0]);
@@ -37,7 +37,7 @@ describe("Rover class", function () {
   });
 
   //TEST 10
-  it("responds correctly to the status check command", function () {
+  test("responds correctly to the status check command", function () {
     let testingRover = new Rover(87382098, 'NORMAL', 110);
     let message = { name: "test status_check", commands: [{ commandType: 'STATUS_CHECK' }] };
     let responseThree = testingRover.receiveMessage(message);
@@ -47,7 +47,7 @@ describe("Rover class", function () {
   });
 
   //TEST 11
-  it("responds correctly to the mode change command", function () {
+  test("responds correctly to the mode change command", function () {
     let testRover = new Rover(87382098, 'NORMAL', 110);
     let message = { name: "test mode_change", commands: [{ commandType: 'MODE_CHANGE' }] };
     let responseFour = testRover.receiveMessage(message);
@@ -56,7 +56,7 @@ describe("Rover class", function () {
   });
 
   //TEST 12
-  it("responds with a false completed value when attempting to move in LOW_POWER mode", function () {
+  test("responds with a false completed value when attempting to move in LOW_POWER mode", function () {
     let testRover = new Rover(0, 'LOW_POWER');
     let moveCommand = new Command('MOVE', 10);
     let message = new Message('testing move mode', [moveCommand]);
@@ -65,7 +65,7 @@ describe("Rover class", function () {
   });
 
   //TEST 13
-  it('responds with the position for the move command', function () {
+  test('responds with the position for the move command', function () {
     const initialPosition = 0;
     let testRover = new Rover(initialPosition);
     let newPosition = 10;
