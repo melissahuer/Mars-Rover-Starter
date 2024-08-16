@@ -10,49 +10,49 @@ describe("Rover class", function () {
 
   //TEST 7
   test("constructor sets position and default values for mode and generatorWatts", function () {
-    let position = 10;
+    let position = 98382;
     let mode = 'Normal';
     let generatorWatts = 110
-    const testRover = new Rover(position, mode, generatorWatts);
-    expect(testRover.position).toBe(position);
-    expect(testRover.generatorWatts).toBe(generatorWatts);
-    expect(testRover.mode).toBe(mode);
+    let testRover = new Rover(position, mode, generatorWatts);
+    expect(testRover.position).toEqual(98382);
+    expect(testRover.generatorWatts).toEqual(110);
+    expect(testRover.mode).toEqual('Normal');
   });
 
   //TEST 8
   test("response returned by receiveMessage contains the name of the message", function () {
-    const testRover = new Rover();
-    const message = { name: "Test message", commands: [] };
-    const response = testRover.receiveMessage(message);
-    expect(response.message).toBe("Test message");
+    let testRover = new Rover();
+    let message = { name: "Test message", commands: [] };
+    let testEight = testRover.receiveMessage(message);
+    expect(testEight.message).toEqual("Test message");
   });
 
   //TEST 9
   test("response returned by receiveMessage includes two results if two commands are sent in the message", function () {
-    const commands = [new Command('test_one', 'test_two'), new Command('test_three', 'test_four')];
-    const message = new Message("Test Message with two commands", commands);
-    const againRover = new Rover([0, 0]);
-    const responseTwo = againRover.receiveMessage(message);
-    expect(responseTwo.results.length).toBe(2);
+    let commands = [new Command('test_one', 'test_two'), new Command('test_three', 'test_four')];
+    let message = new Message("Test Message with two commands", commands);
+    let testRover = new Rover([0, 0]);
+    let testNine = testRover.receiveMessage(message);
+    expect(testNine.results.length).toEqual(2);
   });
 
   //TEST 10
   test("responds correctly to the status check command", function () {
-    let testingRover = new Rover(87382098, 'NORMAL', 110);
+    let testRover = new Rover(98382, 'NORMAL', 110);
     let message = { name: "test status_check", commands: [{ commandType: 'STATUS_CHECK' }] };
-    let responseThree = testingRover.receiveMessage(message);
-    let testStatus = { mode: testingRover.mode, generatorWatts: testingRover.generatorWatts, position: testingRover.position };
-    expect(responseThree.results.length).toBe(1);
-    expect(responseThree.results[0]).toEqual({ roverStatus: testStatus });
+    let testTen = testRover.receiveMessage(message);
+    let testStatus = { mode: testRover.mode, generatorWatts: testRover.generatorWatts, position: testRover.position };
+    expect(testTen.results.length).toEqual(1);
+    expect(testTen.results[0]).toEqual({ roverStatus: testStatus });
   });
 
   //TEST 11
   test("responds correctly to the mode change command", function () {
-    let testRover = new Rover(87382098, 'NORMAL', 110);
+    let testRover = new Rover(98382, 'NORMAL', 110);
     let message = { name: "test mode_change", commands: [{ commandType: 'MODE_CHANGE' }] };
-    let responseFour = testRover.receiveMessage(message);
+    let testEleven = testRover.receiveMessage(message);
     let testModeStatus = { completed: true };
-    expect(responseFour.results[0]).toEqual(testModeStatus);
+    expect(testEleven.results[0]).toEqual(testModeStatus);
   });
 
   //TEST 12
@@ -60,19 +60,19 @@ describe("Rover class", function () {
     let testRover = new Rover(0, 'LOW_POWER');
     let moveCommand = new Command('MOVE', 10);
     let message = new Message('testing move mode', [moveCommand]);
-    let responseFive = testRover.receiveMessage(message);
-    expect(responseFive.results[0].completed).toBe(false);
+    let testTwelve = testRover.receiveMessage(message);
+    expect(testTwelve.results[0].completed).toEqual(false);
   });
 
   //TEST 13
   test('responds with the position for the move command', function () {
-    const initialPosition = 0;
+    let initialPosition = 0;
     let testRover = new Rover(initialPosition);
-    let newPosition = 10;
+    let newPosition = 98382;
     let moveCommand = new Command('MOVE', newPosition);
-    let message = new Message('testing move command and position', [moveCommand]); //{ name: "test move", commands: [{ commandType: 'MOVE'}] };
-    let responseSix = testRover.receiveMessage(message);
-    expect(responseSix.results[0]).toEqual({ completed: true });
-    expect(testRover.position).toBe(newPosition);
+    let message = new Message('testing move command and position', [moveCommand]); 
+    let testThirteen = testRover.receiveMessage(message);
+    expect(testThirteen.results[0]).toEqual({completed: true});
+    expect(testRover.position).toEqual(98382);
   });
 });

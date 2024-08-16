@@ -11,16 +11,16 @@ describe("Command class", function() {
 
   //TEST 2
   test("constructor sets command type", function(){
-    const commandType = "MOVE";
-    let tstCommand = new Command(commandType);
-    expect(tstCommand.commandType).toBe(commandType);
+    let commandType = "MOVE";
+    let testCommand = new Command(commandType);
+    expect(testCommand.commandType).toEqual("MOVE");
   });
   
   //TEST 3
   test("constructor sets a value passed in as the 2nd argument", function(){
-    const commandType = "MOVE"
-    const value = 12000;
-    const tstValue = new Command(commandType, value);
-    expect(tstValue.value).toBe(value);
+    let commandType = "MOVE"
+    let value = 98382;
+    let testValue = new Command(commandType, value);
+    expect(testValue.value).toEqual(98382);
   });
 });

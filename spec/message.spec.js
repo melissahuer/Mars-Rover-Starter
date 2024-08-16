@@ -13,16 +13,16 @@ test("throws error if a name is NOT passed into the constructor as the first par
 
 //TEST 5
 test("constructor sets name", function(){
-    let name = "messageName";
-    let tstName = new Message(name);
-    expect(tstName.name).toBe(name);
+    let name = "Test message with two commands";
+    let testName = new Message(name);
+    expect(testName.name).toEqual("Test message with two commands");
 });
 
 //TEST 6
 test("contains a commands array passed into the constructor as the 2nd argument", function(){
-    let name = "nameMessage";
-    const commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-    const tstCommands = new Message(name, commands);
-    expect(tstCommands.commands).toBe(commands);
+    let name = "Test message with two commands";
+    let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+    let testCommands = new Message(name, commands);
+    expect(testCommands.commands).toEqual([new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')]);
 });
 });
