@@ -57,7 +57,7 @@ describe("Rover class", function () {
 
   //TEST 12
   test("responds with a false completed value when attempting to move in LOW_POWER mode", function () {
-    let testRover = new Rover(0, 'LOW_POWER');
+    let testRover = new Rover(0, 'LOW_POWER');//fix test
     let moveCommand = new Command('MOVE', 10);
     let message = new Message('testing move mode', [moveCommand]);
     let testTwelve = testRover.receiveMessage(message);
